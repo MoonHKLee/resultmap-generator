@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>moonhyuk.lee</groupId>
+    <artifactId>resultmap-generator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Annotation Processor Library</name>
+    <description>Generates MyBatis resultMap XML at compile time</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Data Relational/JDBC annotations -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jdbc</artifactId>
+            <version>3.3.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- AutoService: Annotation Processor 등록 편의 -->
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- annotation-processor-lib 자신이 어노테이션 프로세서라는 것을 선언 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <!--
+                      Processor가 컴파일 시 동작하도록.
+                      "auto-service" 라이브러리가 META-INF/services 자동생성도 해줌.
+                    -->
+                    <annotationProcessors>
+                        <annotationProcessor>moonhyuk.lee.resultmap.generator.MyBatisResultMapProcessor</annotationProcessor>
+                    </annotationProcessors>
+                    <proc>none</proc>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
