@@ -16,15 +16,15 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.3.7</spring.version>
     </properties>
 
     <dependencies>
         <!-- Spring Data Relational/JDBC annotations -->
         <dependency>
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jdbc</artifactId>
-            <version>3.3.7</version>
-            <scope>provided</scope>
+            <artifactId>spring-data-relational</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <!-- AutoService: Annotation Processor 등록 편의 -->
         <dependency>
